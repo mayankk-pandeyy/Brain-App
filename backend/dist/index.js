@@ -20,6 +20,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = __importDefault(require("./database/db"));
 const middleware_1 = require("./middlewares/middleware");
 const contentModel_1 = require("./models/contentModel");
+const linkModel_1 = require("./models/linkModel");
+const generateHash_1 = require("./controllers/generateHash");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const JWT_SECRET = "mayank";
@@ -123,10 +125,44 @@ app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __await
         message: "Deleted!"
     });
 }));
-app.post("/api/v1/brain/share", (req, res) => {
-});
-app.get("api/v1/brain/share/:shareLink", (req, res) => {
-});
+app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const share = req.body.share;
+    if (share) {
+        yield linkModel_1.LinkModel.create({
+            // @ts-ignore
+            userId: req.userId,
+            hash: (0, generateHash_1.generateHash)(10)
+        });
+    }
+    else {
+        yield linkModel_1.LinkModel.deleteOne({
+            // @ts-ignore
+            userId: req.userId
+        });
+    }
+    res.json({
+        message: "Updated shareable link"
+    });
+}));
+app.get("api/v1/brain/share/:shareLink", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const share = req.params.shareLink;
+    const link = yield linkModel_1.LinkModel.findOne({
+        hash: share
+    });
+    if (!link) {
+        res.status(400).json({
+            message: "Bad Request!"
+        });
+        return;
+    }
+    const content = yield contentModel_1.contentModel.find({
+        userId: link.userId
+    });
+    res.status(200).json({
+        message: "Data fetched!",
+        data: content
+    });
+}));
 app.listen(3000, () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, db_1.default)();
     console.log("Server listening at 3000");

@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/database/db.ts","./src/middlewares/middleware.ts","./src/models/contentmodel.ts","./src/models/tagmodel.ts","./src/models/usermodel.ts"],"version":"5.7.3"}
+{"root":["./src/index.ts","./src/controllers/generatehash.ts","./src/database/db.ts","./src/middlewares/middleware.ts","./src/models/contentmodel.ts","./src/models/linkmodel.ts","./src/models/tagmodel.ts","./src/models/usermodel.ts"],"version":"5.7.3"}

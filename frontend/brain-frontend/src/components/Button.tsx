@@ -20,8 +20,8 @@ const Button = (props : ButtonProps) => {
     const onClick = props.onClick;
 
     const buttonStyling : Record<Varients, string> = {
-        primary: "bg-[#FF7801] text-white px-6 py-3 cursor-pointer rounded-full font-mont border border-[#000]",
-        secondary : "text-[#fff] bg-[#3366CC] px-6 py-3 cursor-pointer rounded-full font-mont border border-[#4D2114]"
+        primary: "bg-[#FF7801] text-white px-6 py-3 cursor-pointer rounded-2xl font-mont border border-[#000]",
+        secondary : "text-[#fff] bg-[#3366CC] px-6 py-3 cursor-pointer rounded-2xl font-mont border border-[#4D2114]"
     }
 
     const defaultStyles = "flex gap-1"

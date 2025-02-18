@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken"
 import connectWithDb from "./database/db";
 import { userMiddleware } from "./middlewares/middleware";
 import { contentModel } from "./models/contentModel";
+import { LinkModel } from "./models/linkModel";
+import { generateHash } from "./controllers/generateHash";
 
 
 const app = express();
@@ -143,12 +145,49 @@ app.delete("/api/v1/content", userMiddleware, async(req, res)=>{
     })
 });
 
-app.post("/api/v1/brain/share", (req, res)=>{
+app.post("/api/v1/brain/share", userMiddleware, async (req, res)=>{
+    const share = req.body.share;
+   
+    if(share){
+        await LinkModel.create({
+            // @ts-ignore
+            userId : req.userId,
+            hash : generateHash(10)
+        })
+    }else{
+        await LinkModel.deleteOne({
+            // @ts-ignore
+            userId : req.userId
+        })
+    }
+    res.json({
+        message : "Updated shareable link"
+    })
 
 });
 
-app.get("api/v1/brain/share/:shareLink", (req, res)=> {
-    
+app.get("api/v1/brain/share/:shareLink", userMiddleware, async (req, res)=> {
+    const share = req.params.shareLink;
+
+    const link = await LinkModel.findOne({
+        hash : share
+    })
+
+    if(!link){
+        res.status(400).json({
+            message : "Bad Request!"
+        })
+        return ;
+    }
+
+    const content = await contentModel.find({
+        userId : link.userId
+    })
+
+    res.status(200).json({
+        message : "Data fetched!",
+        data : content
+    })
 })
 
 app.listen(3000, async () => {
