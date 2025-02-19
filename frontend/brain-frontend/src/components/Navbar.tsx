@@ -1,32 +1,51 @@
+
 import logo from "../assets/logo.png"
 import AddIcon from "../icons/AddIcon"
 import LogoutIcon from "../icons/LogoutIcon"
+import ShareIcon from "../icons/ShareIcon"
 import Button from "./Button"
 
-const Navbar = () => {
+interface ModalType {
+    open : boolean,
+    setOpen : (a : boolean) => void
+}
+
+const Navbar = ({open, setOpen} : ModalType) => {
 
     function buttonHandler(){
+        console.log("clicked");
+        setOpen(!open);
+        console.log(open);
+    }
 
+    function logoutHandler(){
+
+        
     }
 
   return (
-    <div className="w-[100%]">
-        <div className="flex items-center justify-between py-3 px-5">
+    <div className="w-[100%] my-auto">
+        <div className="grid grid-cols-10">
             {/* Logo */}
-            <div className="w-[150px]">
+            <div className="w-[150px] col-span-6">
                 <img src={logo}/>
             </div>
 
             {/* Add Content & Logout */}
-            <div className="w-[25%] flex justify-between">
+            <div className="col-span-4 grid grid-cols-3">
                 {/* Add Content */}
-                <div>
-                    <Button varient={"primary"} size={"sm"} text={"Add Content"} preIcon={<AddIcon/>} onClick={buttonHandler}/>
+                <div onClick={buttonHandler} className="col-span-1 place-items-end">
+                    <Button varient={"primary"} size={"sm"} text={"Add Content"} preIcon={<AddIcon/>}/>
+                </div>
+
+                {/* Share Brain */}
+                <div onClick={buttonHandler} className="col-span-1 place-items-end">
+                    <Button varient={"primary"} size={"sm"} text={"Share Brain"} preIcon={<ShareIcon/>}/>
                 </div>
 
                 {/* Logout */}
-                <div>
-                    <Button varient={"secondary"} size={"sm"} text={"Logout"} preIcon={<LogoutIcon/>} onClick={buttonHandler}/>
+                <div onClick={logoutHandler} className="col-span-1 place-items-end">
+                    <Button varient={"secondary"} size={"sm"} text={"Logout"} preIcon={<LogoutIcon/>}/>
                 </div>
             </div>
         </div>

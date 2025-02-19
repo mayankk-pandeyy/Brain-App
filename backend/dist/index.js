@@ -22,8 +22,10 @@ const middleware_1 = require("./middlewares/middleware");
 const contentModel_1 = require("./models/contentModel");
 const linkModel_1 = require("./models/linkModel");
 const generateHash_1 = require("./controllers/generateHash");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 const JWT_SECRET = "mayank";
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -65,7 +67,7 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
-app.get("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     let foundUser = null;
     foundUser = yield userModel_1.userModel.findOne({ username: username });
@@ -128,23 +130,47 @@ app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __await
 app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.body.share;
     if (share) {
-        yield linkModel_1.LinkModel.create({
-            // @ts-ignore
-            userId: req.userId,
-            hash: (0, generateHash_1.generateHash)(10)
-        });
+        try {
+            let exists = null;
+            exists = yield linkModel_1.LinkModel.findOne({
+                // @ts-ignore
+                userId: req.userId
+            });
+            if (exists) {
+                res.json({
+                    message: "Link Created!",
+                    link: `/share/${exists.hash}`
+                });
+                return;
+            }
+            const hash = (0, generateHash_1.generateHash)(10);
+            yield linkModel_1.LinkModel.create({
+                // @ts-ignore
+                userId: req.userId,
+                hash: hash
+            });
+            res.json({
+                message: "Link Created!",
+                link: `/share/${hash}`
+            });
+        }
+        catch (e) {
+            res.json({
+                message: e
+            });
+        }
     }
     else {
         yield linkModel_1.LinkModel.deleteOne({
             // @ts-ignore
             userId: req.userId
         });
+        res.json({
+            message: "Link Deleted!"
+        });
     }
-    res.json({
-        message: "Updated shareable link"
-    });
 }));
-app.get("api/v1/brain/share/:shareLink", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/api/v1/brain/share/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.params.shareLink;
     const link = yield linkModel_1.LinkModel.findOne({
         hash: share

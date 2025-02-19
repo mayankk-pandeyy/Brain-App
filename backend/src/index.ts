@@ -8,11 +8,13 @@ import { userMiddleware } from "./middlewares/middleware";
 import { contentModel } from "./models/contentModel";
 import { LinkModel } from "./models/linkModel";
 import { generateHash } from "./controllers/generateHash";
+import cors from "cors";
 
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 const JWT_SECRET = "mayank";
 
@@ -64,7 +66,7 @@ app.post("/api/v1/signup", async (req, res)=>{
     }
 });
 
-app.get("/api/v1/signin", async (req, res)=>{
+app.post("/api/v1/signin", async (req, res)=>{
     const {username, password} = req.body;
 
     let foundUser = null;
@@ -149,24 +151,50 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res)=>{
     const share = req.body.share;
    
     if(share){
-        await LinkModel.create({
-            // @ts-ignore
-            userId : req.userId,
-            hash : generateHash(10)
-        })
+        try{
+            let exists = null;
+            exists =  await LinkModel.findOne({
+                // @ts-ignore
+                userId : req.userId
+            })
+
+            if(exists){
+                res.json({
+                    message : "Link Created!",
+                    link : `/share/${exists.hash}`
+                })
+                return ;
+            }
+            const hash = generateHash(10);
+            await LinkModel.create({
+                // @ts-ignore
+                userId : req.userId,
+                hash : hash
+            })
+
+            res.json({
+                message : "Link Created!",
+                link : `/share/${hash}`
+            })
+        }catch(e){
+            res.json({
+                message : e
+            })
+        }
     }else{
         await LinkModel.deleteOne({
             // @ts-ignore
             userId : req.userId
         })
+
+        res.json({
+            message : "Link Deleted!"
+        })
     }
-    res.json({
-        message : "Updated shareable link"
-    })
 
 });
 
-app.get("api/v1/brain/share/:shareLink", userMiddleware, async (req, res)=> {
+app.get("/api/v1/brain/share/:shareLink", async (req, res)=> {
     const share = req.params.shareLink;
 
     const link = await LinkModel.findOne({

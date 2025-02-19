@@ -1,13 +1,12 @@
 
 
-type Varients = "primary" | "secondary";
+type Varients = "primary" | "secondary" | "primary-signup";
 interface ButtonProps {
     varient : Varients;
     size : "sm" | "md" | "lg";
     text : string;
     preIcon? : any;
     postIcon? : any;
-    onClick : () => void;
 }
 
 
@@ -17,11 +16,11 @@ const Button = (props : ButtonProps) => {
     const text = props.text;
     const preIcon = props.preIcon;
     const postIcon = props.postIcon;
-    const onClick = props.onClick;
 
     const buttonStyling : Record<Varients, string> = {
-        primary: "bg-[#FF7801] text-white px-6 py-3 cursor-pointer rounded-2xl font-mont border border-[#000]",
-        secondary : "text-[#fff] bg-[#3366CC] px-6 py-3 cursor-pointer rounded-2xl font-mont border border-[#4D2114]"
+        "primary-signup" : "w-full text-center text-[#F3C280] bg-[#1A1B26] px-6 py-3 cursor-pointer rounded-full font-mont hover:bg-[#ED7014] transition-all duration-400",
+        primary: "bg-[#3A86FF] text-white px-6 py-3 cursor-pointer rounded-full font-mont hover:bg-[#ED7014] transition-all duration-400",
+        secondary : "text-[#3A86FF] border-[1px] border-[#3A86FF] px-6 py-3 cursor-pointer rounded-full font-mont",
     }
 
     const defaultStyles = "flex gap-1"

@@ -1,0 +1,17 @@
+const TwitterIcon = () => {
+  return (
+    <div>
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <rect width="90" height="90" fill="url(#pattern0_1304_2154)"/>
+        <defs>
+        <pattern id="pattern0_1304_2154" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <use xlinkHref="#image0_1304_2154" transform="scale(0.0111111)"/>
+        </pattern>
+        <image id="image0_1304_2154" width="90" height="90" preserveAspectRatio="none" xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAG9ElEQVR4nO2ceYwURRSHCw9UPFDwQLyCt0Y8UeO5KDGuuu7udL1fzSyLbtSwXmiM8dZkxIMoiRLjFRO8MNGgIgYvUOIRFVEJngRPvEEBZT0QWJA1LzsmhlS9nu6do2e6vqT+2n1dr1739Kt6Ryvl8Xg8Ho/H4/F4PB6Px5NyiGgqgJ4SjrUAjqr2ugBsAWCOoOcfxphDKqZQa2vrYABLSmzshbxQVSXy+fxGAKYJ+q0zxpxZccWMMacCWF9iY9+hqgTPLelGRBepKio3uZSGJqJ/tNYjq7COsSG63a6qyZgxY7YE8GWJjf1Ne3v7NpVag9b6tIKPcOn0FL9WVLUxxhzH768Sv0ImV0j3gwB0CTf9vaampgEqKUjvNyKaqZTqt6FMS0vLtkT0vUtOax2UU+dcLjdUmh/Aolwut5NKEo2NjZsB+FhQ+jybHIBTBIe6NJPJ7FgOfZubm7cG8IGgbxc/7SqJaK0PI6Jux1P9F4C9bXJEdL/wa5heaj0BbExEM4Q5u7XWo1SSIaK8sIC3eJEOh/qFINdeYh3vEZ7k9UR0tko6DQ0NmwB4V1jI5TY5rfWxgkPtymazu5VCPwBXhux48qpWCIJgfwB/OxazGsBwmxzvVQUDvGJzqFEwxmjepwuGfqKvc1QcIrpMWNB8AP0dDvUjQe7CuPporUcAWCncyDd4flVr8AafiF4VjDbeJscBGwBrHDIrs9nsvlF1ATCMiH4WdFk4evTo7VStkslkdiWi3xyLW6u1PtomB+B6wShzbA7VBYCBRPSJ8CQvc+2GagoiOidqtC7fG0V7U5C7ppi5Ozs7NwUwWzDyKgDHqHqBiJ4WjDbJJpPNZvcC8KdDZk0RMeF+AB6VtnEA2lQ9AWAH4R25nsOtDrlxgqEWdHR0bC7MOV7axgG4QtUjWusWYdE/OJwRP5UvCXITbHMRUS4kTl6RgFXVADBFWPxDDpldXA61ELs+4f//b4w5sbBXd72XZ/KhStUzAAYC+M5lBD5Q2OT4SCzcoK8BbPXfQUnY5fD4lHVQaUBrPUqK1rnCkhx8Fwx4b1tb2/YhCYjFAHZXaYLkoM40l0MF8Iuwg3AGpXj3wpFFlTaampoGENHnwnvUGj0D0Byyk7CNdeyIVVoBcIQrdl1ILVl/5gAejmjocSrtENGtgoFm2yJpnLQF8G3SSxcSRWfvEfl94RVyiU0OwMkh4U4ez0WJidQ9AIYL+15ntI6I7hJu0LJEZa6TAoCrhSdzHj/5G8rw8buwL46UDE41+d5o3evCE3qDTc4Yc3icZHCqATCMKzWF2PUImxwR3RQ1GZx6AFwQNVrHcQuuJoqaDE47/YjoBcFoE21C2Wz2gDjJ4FSTy+WGAvjV8SrgLV2DTY7jy8INmm9zqKkHQJtgtEVczhXVoQK4MfWGtQHgScFoD9hkgiDYU0h/rTXGHGmdLK209x6zpfoOHmfYZAF0JrV1I4nH8pdDjMxjMffR2K4B4PmoyeDUQUJlqWU8Y7tGJpPZGcByl0M1xpyk0gzkwhnXoSTnuFYmRjK4/gFgYnZ4rXBVmnLRYtRkcF0D4PhC1ZDLKFxyMEn4+4u22DWAQUT0kyDXrNJC0LslWxqWuQ5r3SCi8+O0biSuR6UctLa2DpZyhxtmrgEc6qo05WhdEAT72Obhfbcwx7OqngHQP6Ssd6WtN5xDpoLM23FaNwCcpeo4ePRYnMx1oXVjrvAKuSpO60Zd1nwAmBCyZbPmCousNF2ttT7YMe/EqMngmgXAuSFGvrPI61wqXONDoXVD6oW8WNUDWuuRQttET+HoXGxGJKzS9BabkORQ47ZuJAoAB/LhQjDMPHZaEa8ZqdK0GIdKRO/UbPoLwBCp6IW/ZsD/E/PaHcVUmkZxqACuU7VG4dM5cwUj/97XVFNIpendDpn9XO1whRZlazI4yS1w0wUjd/PJra/zcMmu1LoBoDGqQw1r3UgUUjURhGNzHEIqTX90tW5wB4Cg320q6bARJSMDuLkMcz4izDcljkN1JYMTgTHmdOmLNEQ0tRyHg0LrhuR0EcOhWpPBVYfLtIRTWw83apaz51qqNC10yQ6J6lA566OSBP8MOXshKPwVt0iUW4+QStMZcRwq/0pVEih8OkfKXC+v1KkrrNKU26aj9kIWEgiDVAIy17MEJVfxl8QqqZNUacqvNg5M2eSktmYierySa7Apd1/Ip3Paq6GXVGnah5FVVVrMtSGKFfUlgnJQRKVpnLGCP4+hKglvl6ReEiJ6UFWZrFxpGnfMqljsmtNM0qdzALxmiwlXg5BK07hjbKUy164uVh4L+CuNKiHkwytNI4+yt27wFgfAZ4ISS4Ig2EPVVutGT0xj+9YNj8fj8Xg8Ho/H4/F4PCqt/AuM9FK5ZeMmEQAAAABJRU5ErkJggg=="/>
+        </defs>
+        </svg>
+    </div>
+  )
+}
+
+export default TwitterIcon

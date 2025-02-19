@@ -3,12 +3,12 @@ import SideBar from "./SideBar"
 
 const Content = () => {
   return (
-    <div className="w-[100%] h-[85vh]">
-        <div className="grid grid-cols-10 gap h-full">
-            <div className="col-span-3 bg-green-500">
+    <div className="w-[100%] h-full">
+        <div className="w-[100%] h-[100%] flex justify-between overflow-hidden">
+            <div className="w-[20%] col-span-2">
                 <SideBar/>
             </div>
-            <div className="col-span-7 bg-cyan-400">
+            <div className="w-[75%] h-[100%] col-span-8">
                 <Hero/>
             </div>
         </div>
