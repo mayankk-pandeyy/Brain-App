@@ -1,7 +1,10 @@
 import Hero from "./Hero"
 import SideBar from "./SideBar"
 
+
+
 const Content = () => {
+
   return (
     <div className="w-[100%] h-full">
         <div className="w-[100%] h-[100%] flex justify-between overflow-hidden">

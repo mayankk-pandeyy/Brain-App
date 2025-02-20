@@ -18,7 +18,7 @@ const Button = (props : ButtonProps) => {
     const postIcon = props.postIcon;
 
     const buttonStyling : Record<Varients, string> = {
-        "primary-signup" : "w-full text-center text-[#F3C280] bg-[#1A1B26] px-6 py-3 cursor-pointer rounded-full font-mont hover:bg-[#ED7014] transition-all duration-400",
+        "primary-signup" : "w-full text-center text-[#F3C280] bg-[#1A1B26] px-6 py-3 cursor-pointer rounded-full font-mont hover:bg-[#ED7014] transition-all duration-300",
         primary: "bg-[#3A86FF] text-white px-6 py-3 cursor-pointer rounded-full font-mont hover:bg-[#ED7014] transition-all duration-400",
         secondary : "text-[#3A86FF] border-[1px] border-[#3A86FF] px-6 py-3 cursor-pointer rounded-full font-mont",
     }
@@ -30,11 +30,11 @@ const Button = (props : ButtonProps) => {
     
   return (
     <div>
-        <button className={`${buttonStyling[varient]} ${defaultStyles}`}>
+        <button className={`group ${buttonStyling[varient]} ${defaultStyles}`}>
             <div className={iconStyles}>
                 {preIcon}
             </div>
-            <div>
+            <div className="transition-all duration-300">
                 {text}
             </div>
             <div className={iconStyles}>

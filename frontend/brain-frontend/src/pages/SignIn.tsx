@@ -13,17 +13,26 @@ const SignIn = () => {
     const navigate = useNavigate();
     
     async function signInHandler(){
-        const username = usernameRef.current?.value;
-        const password = passwordRef.current?.value; 
+        try{
+            const username = usernameRef.current?.value;
+            const password = passwordRef.current?.value;
 
-        const response = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
-                username : username,
-                password : password
-            
-        })
-        const token = response.data.jwt;
-        await localStorage.setItem("token", token);
-        navigate("/dashboard");
+            if(username == "" || password == ""){
+                return ;
+            }
+
+            const response = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
+                    username : username,
+                    password : password
+                
+            })
+            console.log(response);
+            const token = response.data.jwt;
+            localStorage.setItem("token", token);
+            navigate("/dashboard");
+        }catch(e){
+            console.log(e);
+        }
     }
 
   return (

@@ -34,7 +34,7 @@ app.post("/api/v1/signup", async (req, res)=>{
         const parsedData = validData.safeParse(req.body);
     
         if(!parsedData.success){
-            res.json({
+            res.status(400).json({
                 message : "Incorrect format!",
                 error : parsedData.error
             })
